@@ -1,7 +1,11 @@
-export default function Home() {
-  return (
-    <main>
-      <h2 className="text-4xl"> welcome</h2>
-    </main>
-  );
-}
+import RootLayout from "@/components/Layouts/RootLayout";
+
+const Home = () => {
+  return <div>Home</div>;
+};
+
+export default Home;
+
+Home.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
