@@ -1,11 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
 import Image from "next/image";
-import banner_1 from "../../assets/images/banner/1.jpg";
-import banner_2 from "../../assets/images/banner/2.jpg";
-import banner_3 from "../../assets/images/banner/3.jpg";
-import side_1 from "../../assets/images/banner/side_1.png";
-import side_2 from "../../assets/images/banner/side_2.png";
+import banner_1 from "@/assets/images/banner/1.jpg";
+import banner_2 from "@/assets/images/banner/2.jpg";
+import banner_3 from "@/assets/images/banner/3.jpg";
+import side_1 from "@/assets/images/banner/side_1.png";
+import side_2 from "@/assets/images/banner/side_2.png";
 
 const Banner = () => {
   var settings = {

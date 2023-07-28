@@ -41,7 +41,7 @@ const Services = () => {
     ],
   };
   return (
-    <section className="service_sections md:pb-[40px] pb-[20px] md:pt-[20px] ">
+    <section className="service_sections pb-[20px] md:pt-[20px] ">
       <div className="services flex-wrap justify-between items-center">
         <Slider {...settings}>
           <div className="">
