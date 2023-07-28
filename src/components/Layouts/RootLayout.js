@@ -1,9 +1,12 @@
+import Header from "../UI/Header";
+import Footer from "../UI/Footer";
+
 const RootLayout = ({ children }) => {
   return (
     <div>
-      <h1 className="">header</h1>
+      <Header />
       {children}
-      <h1 className="">footer</h1>
+      <Footer />
     </div>
   );
 };
