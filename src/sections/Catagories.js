@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 
-const Catagories = ({ catagories }) => {
+const Catagories = () => {
+  const catagories = useSelector((state) => state.category.data);
+
   const settings = {
     className: "center",
     dots: false,

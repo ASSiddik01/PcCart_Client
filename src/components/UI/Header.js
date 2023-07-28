@@ -12,9 +12,11 @@ import Storage from "@/assets/images/categories/Storage.webp";
 import Monitor from "@/assets/images/categories/Monitor.webp";
 import PowerSupply from "@/assets/images/categories/Power Supply.webp";
 import Others from "@/assets/images/categories/Others.webp";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const catagories = useSelector((state) => state.category.data);
   return (
     <header className={``}>
       <div>
@@ -125,97 +127,25 @@ const Header = () => {
                             />
                             <div className="mega-menu-wrapper box_shadow rounded-[5px]">
                               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[40px] py-[50px] px-[90px] max-h-[400px] overflow-auto">
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={Processor}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      CPU / Processor
-                                    </h4>
+                                {catagories?.map((category) => (
+                                  <div
+                                    key={category?._id}
+                                    className="single_item"
+                                  >
+                                    <Image
+                                      className="w-full h-[180px] rounded-[3px]"
+                                      src={category?.imgUrl}
+                                      alt="processor"
+                                      width={500}
+                                      height={500}
+                                    />
+                                    <div className="mt-[10px] px-[15px]">
+                                      <h4 className="text-white duration-300 leading-[29px] mb-[12px] capitalize">
+                                        {category?.title}
+                                      </h4>
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={Motherboard}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      Motherboard
-                                    </h4>
-                                  </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={RAM}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      RAM
-                                    </h4>
-                                  </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={PowerSupply}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      Power Supply Unit
-                                    </h4>
-                                  </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={Storage}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      Storage Device
-                                    </h4>
-                                  </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={Monitor}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      Monitor
-                                    </h4>
-                                  </div>
-                                </div>
-                                <div className="single_item">
-                                  <Image
-                                    className="w-full h-[180px] rounded-[3px]"
-                                    src={Others}
-                                    alt="processor"
-                                    placeholder="blur"
-                                  />
-                                  <div className="mt-[10px] px-[15px]">
-                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
-                                      Others
-                                    </h4>
-                                  </div>
-                                </div>
+                                ))}
                               </div>
                             </div>
                           </li>
