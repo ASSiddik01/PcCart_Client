@@ -1,10 +1,20 @@
 import { HiMenuAlt1 } from "react-icons/hi";
-import { FiHeart, FiUser } from "react-icons/fi";
+import { FiHeart, FiShoppingCart, FiUser } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/images/main_logo.png";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { useState } from "react";
+import Processor from "@/assets/images/categories/Processor.webp";
+import Motherboard from "@/assets/images/categories/Motherboard.webp";
+import RAM from "@/assets/images/categories/RAM.webp";
+import Storage from "@/assets/images/categories/Storage.webp";
+import Monitor from "@/assets/images/categories/Monitor.webp";
+import PowerSupply from "@/assets/images/categories/Power Supply.webp";
+import Others from "@/assets/images/categories/Others.webp";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <header className={``}>
       <div>
@@ -33,9 +43,41 @@ const Header = () => {
                       <li>
                         <Link href="/">Home</Link>
                       </li>
-                      <li className="block md:hidden">
-                        <Link href="/books">All Books</Link>
+                      <li onClick={() => setIsOpen(!isOpen)} className="">
+                        <div className="flex justify-between">
+                          Categories
+                          {isOpen ? (
+                            <FaAngleUp color="#fff" />
+                          ) : (
+                            <FaAngleDown color="#fff" />
+                          )}
+                        </div>
                       </li>
+                      {isOpen && (
+                        <ul className="mobile_dropdown ml-[25px]">
+                          <Link href="/">
+                            <li className="capitalize">Processor</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">Motherboard</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">RAM</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">Power Supply Unit</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">Storage Device</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">Monitor</li>
+                          </Link>
+                          <Link href="/">
+                            <li className="capitalize">Others</li>
+                          </Link>
+                        </ul>
+                      )}
                       {/* {token && (
                     <>
                       <li className="block md:hidden">
@@ -72,15 +114,112 @@ const Header = () => {
                     <div className="mainmenu md:flex items-center gap-[10px]">
                       <div className="flex flex-wrap md:justify-start justify-center items-center gap-[15px]">
                         <Link href="/">Home</Link>
-                        <Link href="/books">All Books</Link>
-                        {/* {token && (
-                      <>
-                        <Link  href="/add-new-book">Add New Book </Link >
-                        <Link  href="/reading-book-list">
-                          Reading Book list
-                        </Link >
-                      </>
-                    )} */}
+                        <ul>
+                          <li className="mega-menu relative flex gap-1 text-[#000]">
+                            <Link className="" href="">
+                              Categories
+                            </Link>
+                            <FaAngleDown
+                              color="#fff"
+                              className="duration-300"
+                            />
+                            <div className="mega-menu-wrapper box_shadow rounded-[5px]">
+                              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[40px] py-[50px] px-[90px] max-h-[400px] overflow-auto">
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={Processor}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      CPU / Processor
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={Motherboard}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      Motherboard
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={RAM}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      RAM
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={PowerSupply}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      Power Supply Unit
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={Storage}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      Storage Device
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={Monitor}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      Monitor
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div className="single_item">
+                                  <Image
+                                    className="w-full h-[180px] rounded-[3px]"
+                                    src={Others}
+                                    alt="processor"
+                                    placeholder="blur"
+                                  />
+                                  <div className="mt-[10px] px-[15px]">
+                                    <h4 className="text-white duration-300 leading-[29px] mb-[12px]">
+                                      Others
+                                    </h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -90,17 +229,17 @@ const Header = () => {
               <div
                 className={`action_area ${
                   //   token ? "md:w-[20%]" : "md:w-[10%]"
-                  "md:w-[10%]"
+                  "md:w-[20%]"
                 } flex justify-between items-center md:gap-[20px] gap-[5px]`}
               >
-                {/* {token && (
-              <Link
-                to="/add-new-book"
-                className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
-              >
-                Add <span className="hidden md:block text-white">New</span>
-              </Link>
-            )} */}
+                {/* {token && ( */}
+                <Link
+                  href="/pc-builder"
+                  className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
+                >
+                  PC <span className="hidden md:block text-white">Builder</span>
+                </Link>
+                {/* )} */}
                 <div className="myaccount relative flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe]">
                   <FiUser size="20" />
                   <p className="text-[13px] hidden md:block">Account</p>
@@ -123,10 +262,10 @@ const Header = () => {
                     </ul>
                   </div>
                 </div>
-                <Link href="wishlist">
+                <Link href="cart">
                   <div className="wishlist flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe] relative">
-                    <FiHeart size="20" />
-                    <p className="text-[13px] hidden md:block">Wishlist</p>
+                    <FiShoppingCart size="20" />
+                    <p className="text-[13px] hidden md:block">Cart</p>
                     <div className="bg-[#38b5fe] text-white badge badge-sm absolute text-[12px] top-[-10px] right-[-10px] md:right-0">
                       {/* {userData?.data?.wishlist?.length ?? 0} */} 0
                     </div>
