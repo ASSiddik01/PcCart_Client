@@ -293,3 +293,16 @@ input[type="number"]::-webkit-outer-spin-button {
 .accordion__button[aria-selected="true"]::after {
   transform: rotate(45deg);
 }
+
+/* Banner */
+.left_banner .slick-dots li button:before {
+  font-size: 20px;
+}
+
+.left_banner .slick-dots {
+  bottom: 20px;
+}
+
+.slick-dots li button:before {
+  color: var(--color_38b5fe) !important;
+}
