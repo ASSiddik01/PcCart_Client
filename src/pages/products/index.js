@@ -1,27 +1,18 @@
-import Link from "next/link";
 import React from "react";
+import BreadCrumb from "../../components/UI/BreadCrumb";
+import RootLayout from "../../components/Layouts/RootLayout";
 import { useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
+import Link from "next/link";
 
-const FeaturedProducts = () => {
+const Products = () => {
   const products = useSelector((state) => state.product.data);
-
   return (
-    <section className="featured_collection_section bg-white p-[15px] rounded-xl section_gap">
-      <div className="section_heading flex justify-between items-center">
-        <h4 className="section_title font-bold md:text-[28px] text-[24px]">
-          Featured Products
-        </h4>
-        <Link
-          href="/products"
-          className="first_button duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
-        >
-          Show All
-        </Link>
-      </div>
-      <div className="container pt-4 mx-auto">
+    <div>
+      <BreadCrumb title={""} />
+      <div className="container py-4 mx-auto">
         <div className="flex flex-wrap -m-4">
-          {products?.slice(0, 6)?.map((product) => (
+          {products?.map((product) => (
             <div key={product?._id} className="p-4 md:w-1/3">
               <Link href={`/products/${product?._id}`}>
                 <div className="h-full border-2 relative border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -65,8 +56,12 @@ const FeaturedProducts = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default FeaturedProducts;
+export default Products;
+
+Products.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};

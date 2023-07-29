@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const catagories = useSelector((state) => state.category.data);
+  const categories = useSelector((state) => state.category.data);
   return (
     <header className={``}>
       <div>
@@ -56,42 +56,17 @@ const Header = () => {
                         </div>
                       </li>
                       {isOpen && (
-                        <ul className="mobile_dropdown ml-[25px]">
-                          <Link href="/">
-                            <li className="capitalize">Processor</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">Motherboard</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">RAM</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">Power Supply Unit</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">Storage Device</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">Monitor</li>
-                          </Link>
-                          <Link href="/">
-                            <li className="capitalize">Others</li>
-                          </Link>
+                        <ul className="mobile_dropdown ml-[25px] h-[300px] overflow-auto">
+                          {catagories?.map((category) => (
+                            <Link
+                              key={category?._id}
+                              href={`/category/${category?._id}`}
+                            >
+                              <li className="capitalize">{category?.title}</li>
+                            </Link>
+                          ))}
                         </ul>
                       )}
-                      {/* {token && (
-                    <>
-                      <li className="block md:hidden">
-                        <Link href="/add-new-book">Add New Book</Link>
-                      </li>
-                      <li className="block md:hidden">
-                        <Link href="/reading-book-list">
-                          Reading Book list
-                        </Link>
-                      </li>
-                    </>
-                  )} */}
                     </ul>
                   </div>
                 </div>
@@ -113,47 +88,27 @@ const Header = () => {
               <div className="md:block hidden py-2 px-[20px]">
                 <div className="layout">
                   <div className="menu_area my-1 flex justify-between md:justify-center items-center ">
-                    <div className="mainmenu md:flex items-center gap-[10px]">
-                      <div className="flex flex-wrap md:justify-start justify-center items-center gap-[15px]">
+                    <ul className="mainmenu flex gap-2">
+                      <li className="text-white hover:text-[#38b5fe] duration-300 ">
                         <Link href="/">Home</Link>
-                        <ul>
-                          <li className="mega-menu relative flex gap-1 text-[#000]">
-                            <Link className="" href="">
-                              Categories
-                            </Link>
-                            <FaAngleDown
-                              color="#fff"
-                              className="duration-300"
-                            />
-                            <div className="mega-menu-wrapper box_shadow rounded-[5px]">
-                              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[40px] py-[50px] px-[90px] max-h-[400px] overflow-auto">
-                                {catagories?.map((category) => (
-                                  <Link href={`/category/${category?._id}`}>
-                                    <div
-                                      key={category?._id}
-                                      className="single_item"
-                                    >
-                                      <Image
-                                        className="w-full h-[180px] rounded-[3px]"
-                                        src={category?.imgUrl}
-                                        alt="processor"
-                                        width={500}
-                                        height={500}
-                                      />
-                                      <div className="mt-[10px] px-[15px]">
-                                        <h4 className="text-white duration-300 leading-[29px] mb-[12px] capitalize">
-                                          {category?.title}
-                                        </h4>
-                                      </div>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          </li>
+                      </li>
+                      <li className="text-white  duration-300 dropdown relative flex gap-1 items-center ">
+                        <Link href="/">Categories</Link>
+                        <FaAngleDown className="duration-300" />
+                        <ul className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
+                          {categories?.map((category) => (
+                            <li
+                              key={category?._id}
+                              className="hover:ml-1 duration-300 py-2 hover:text-[#38b5fe] capitalize "
+                            >
+                              <Link href={`/category/${category?._id}`}>
+                                {category?.title}
+                              </Link>
+                            </li>
+                          ))}
                         </ul>
-                      </div>
-                    </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

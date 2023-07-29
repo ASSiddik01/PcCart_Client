@@ -51,7 +51,7 @@ const Catagories = () => {
       </div>
       <Slider {...settings}>
         {catagories?.map((category) => (
-          <Link href={`/category/${category?._id}`}>
+          <Link key={category?._id} href={`/category/${category?._id}`}>
             <div key={category?._id}>
               <div className="catagory border border-[#ededed] rounded-md flex justify-between items-center gap-[10px] m-2 px-[15px] py-[10px] ">
                 <div className="catagory_info">

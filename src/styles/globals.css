@@ -122,63 +122,29 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--color_131921);
 }
 
-.mainmenu a {
-  color: #fff;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-}
-
-.mainmenu a:hover,
-.catagory_menu .dropdown .catagory_menu_btn:hover {
+.dropdown ul {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.3s;
 }
 
-.mainmenu li:hover ul {
+.dropdown:hover > a {
+  color: var(--color_38b5fe);
+}
+
+.dropdown:hover ul {
   opacity: 1;
   visibility: visible;
-  top: 45px;
 }
 
-.mainmenu li.mega-menu {
-  position: static;
-}
-
-.mega-menu-wrapper {
-  left: 0;
-  right: 0;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: absolute;
-  width: 100%;
-  background: var(--color_131921);
-  z-index: -1;
-  top: 180px;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s;
-}
-
-.mainmenu li.mega-menu:hover .mega-menu-wrapper {
-  opacity: 1;
-  visibility: visible;
-  top: 70px;
-  z-index: 99;
-}
-
-.mainmenu a:hover,
-.mainmenu li:hover svg {
-  color: var(--color_38b5fe) !important;
-}
-
-.mainmenu li:hover svg {
+.dropdown:hover svg {
+  color: var(--color_38b5fe);
   transform: rotate(180deg);
 }
 
-.single_item:hover div h4 {
-  color: var(--color_38b5fe);
+.catagory_menu .dropdown .catagory_menu_btn:hover {
+  transition: all 0.3s;
 }
 
 .catagory_menu .dropdown .menu {
@@ -211,9 +177,9 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--color_232f3e);
 }
 
-.mainmenu a:hover {
+/* .mainmenu a:hover {
   color: var(--color_38b5fe) !important;
-}
+} */
 
 .action_area div p,
 .footer_info p,
