@@ -134,7 +134,7 @@ const Header = () => {
                           <li
                             onClick={() =>
                               signIn("github", {
-                                callbackUrl: "http://localhost:3000/",
+                                callbackUrl: process.env.NEXTAUTH_URL,
                               })
                             }
                             className="hover:border-b py-2"
@@ -144,12 +144,12 @@ const Header = () => {
                           <li
                             onClick={() =>
                               signIn("google", {
-                                callbackUrl: "http://localhost:3000/",
+                                callbackUrl: process.env.NEXTAUTH_URL,
                               })
                             }
                             className="hover:border-b py-2"
                           >
-                           Google
+                            Google
                           </li>
                         </>
                       ) : (
