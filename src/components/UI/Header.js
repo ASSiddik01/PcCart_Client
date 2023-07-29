@@ -141,8 +141,16 @@ const Header = () => {
                           >
                             GitHub
                           </li>
-
-                          <li className="hover:border-b py-2">Sign Up</li>
+                          <li
+                            onClick={() =>
+                              signIn("google", {
+                                callbackUrl: "http://localhost:3000/",
+                              })
+                            }
+                            className="hover:border-b py-2"
+                          >
+                           Google
+                          </li>
                         </>
                       ) : (
                         <li
