@@ -13,7 +13,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const categories = useSelector((state) => state.category.data);
   const { data: session } = useSession();
-  console.log("first", session?.user);
+
   return (
     <header className={``}>
       <div>
@@ -92,7 +92,7 @@ const Header = () => {
                       <li className="text-white  duration-300 main_dropdown relative flex gap-1 items-center ">
                         <Link href="/">Categories</Link>
                         <FaAngleDown className="duration-300" />
-                        <ul className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
+                        <div className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
                           {categories?.map((category) => (
                             <li
                               key={category?._id}
@@ -103,7 +103,7 @@ const Header = () => {
                               </Link>
                             </li>
                           ))}
-                        </ul>
+                        </div>
                       </li>
                     </ul>
                   </div>
