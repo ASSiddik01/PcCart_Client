@@ -20,7 +20,7 @@ const FeaturedProducts = () => {
         </Link>
       </div>
       <div className="container pt-4 mx-auto">
-        <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap ">
           {products?.slice(0, 6)?.map((product) => (
             <div key={product?._id} className="p-4 md:w-1/3">
               <Link href={`/products/${product?._id}`}>

@@ -122,23 +122,23 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--color_131921);
 }
 
-.dropdown ul {
+.main_dropdown ul {
   position: absolute;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
 }
 
-.dropdown:hover > a {
+.main_dropdown:hover > a {
   color: var(--color_38b5fe);
 }
 
-.dropdown:hover ul {
+.main_dropdown:hover ul {
   opacity: 1;
   visibility: visible;
 }
 
-.dropdown:hover svg {
+.main_dropdown:hover svg {
   color: var(--color_38b5fe);
   transform: rotate(180deg);
 }
@@ -330,5 +330,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .featured_category_section .slick-arrow {
     top: -15% !important;
+  }
+  .breadcrumbs > ul > li:last-child > a,
+  .breadcrumbs > ol > li:last-child > a {
+    display: none !important;
   }
 }

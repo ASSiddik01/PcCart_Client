@@ -21,7 +21,7 @@ const Category = () => {
     <div>
       <BreadCrumb title={selectedCategory[0]?.title} />
       <div className="container py-4 mx-auto">
-        <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap ">
           {selectedProducts?.map((product) => (
             <div key={product?._id} className="p-4 md:w-1/3">
               <Link href={`/products/${product?._id}`}>

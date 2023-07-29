@@ -57,7 +57,7 @@ const Header = () => {
                       </li>
                       {isOpen && (
                         <ul className="mobile_dropdown ml-[25px] h-[300px] overflow-auto">
-                          {catagories?.map((category) => (
+                          {categories?.map((category) => (
                             <Link
                               key={category?._id}
                               href={`/category/${category?._id}`}
@@ -92,7 +92,7 @@ const Header = () => {
                       <li className="text-white hover:text-[#38b5fe] duration-300 ">
                         <Link href="/">Home</Link>
                       </li>
-                      <li className="text-white  duration-300 dropdown relative flex gap-1 items-center ">
+                      <li className="text-white  duration-300 main_dropdown relative flex gap-1 items-center ">
                         <Link href="/">Categories</Link>
                         <FaAngleDown className="duration-300" />
                         <ul className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
@@ -121,7 +121,7 @@ const Header = () => {
               >
                 {/* {token && ( */}
                 <Link
-                  href="/pc-builder"
+                  href="/pcbuilder"
                   className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
                 >
                   PC <span className="hidden md:block text-white">Builder</span>
