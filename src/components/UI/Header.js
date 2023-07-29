@@ -5,18 +5,15 @@ import Image from "next/image";
 import logo from "@/assets/images/main_logo.png";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { useState } from "react";
-import Processor from "@/assets/images/categories/Processor.webp";
-import Motherboard from "@/assets/images/categories/Motherboard.webp";
-import RAM from "@/assets/images/categories/RAM.webp";
-import Storage from "@/assets/images/categories/Storage.webp";
-import Monitor from "@/assets/images/categories/Monitor.webp";
-import PowerSupply from "@/assets/images/categories/Power Supply.webp";
-import Others from "@/assets/images/categories/Others.webp";
 import { useSelector } from "react-redux";
+import { signIn } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const categories = useSelector((state) => state.category.data);
+  const { data: session } = useSession();
+  console.log("first", session?.user);
   return (
     <header className={``}>
       <div>
@@ -115,49 +112,59 @@ const Header = () => {
 
               <div
                 className={`action_area ${
-                  //   token ? "md:w-[20%]" : "md:w-[10%]"
-                  "md:w-[20%]"
+                  session?.user ? "md:w-[16%]" : "md:w-[8%]"
                 } flex justify-between items-center md:gap-[20px] gap-[5px]`}
               >
-                {/* {token && ( */}
-                <Link
-                  href="/pcbuilder"
-                  className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
-                >
-                  PC <span className="hidden md:block text-white">Builder</span>
-                </Link>
-                {/* )} */}
+                {session?.user && (
+                  <Link
+                    href="/pcbuilder"
+                    className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
+                  >
+                    PC{" "}
+                    <span className="hidden md:block text-white">Builder</span>
+                  </Link>
+                )}
                 <div className="myaccount relative flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe]">
                   <FiUser size="20" />
                   <p className="text-[13px] hidden md:block">Account</p>
                   <div className="user_button absolute  z-[999] right-[-40px] md:top-[63px] top-[50px] w-[120px] py-[5px] px-[10px] rounded-md ">
                     <ul className="text-center">
-                      {/* {!token ? ( */}
-                      <>
-                        <Link href="signin">
-                          <li className="hover:border-b py-2">Sign In</li>
-                        </Link>
-                        <Link href="signup">
+                      {!session?.user ? (
+                        <>
+                          <li
+                            onClick={() =>
+                              signIn("github", {
+                                callbackUrl: "http://localhost:3000/",
+                              })
+                            }
+                            className="hover:border-b py-2"
+                          >
+                            GitHub
+                          </li>
+
                           <li className="hover:border-b py-2">Sign Up</li>
-                        </Link>
-                      </>
-                      {/* ) : (
-                        <Link href="" onClick={handleSignOut}>
-                          <li className="hover:border-b py-2">Sign Out</li>
-                        </Link>
-                      )} */}
+                        </>
+                      ) : (
+                        <li
+                          onClick={() => signOut()}
+                          className="hover:border-b py-2"
+                        >
+                          Sign Out
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </div>
-                <Link href="cart">
-                  <div className="wishlist flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe] relative">
+                <div className="wishlist flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe] relative">
+                  <Link href="cart">
                     <FiShoppingCart size="20" />
                     <p className="text-[13px] hidden md:block">Cart</p>
                     <div className="bg-[#38b5fe] text-white badge badge-sm absolute text-[12px] top-[-10px] right-[-10px] md:right-0">
-                      {/* {userData?.data?.wishlist?.length ?? 0} */} 0
+                      {" "}
+                      0
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

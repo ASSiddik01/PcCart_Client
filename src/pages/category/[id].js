@@ -19,7 +19,7 @@ const Category = () => {
 
   return (
     <div>
-      <BreadCrumb title={selectedCategory[0]?.title} />
+      <BreadCrumb title={selectedCategory && selectedCategory[0]?.title} />
       <div className="container py-4 mx-auto">
         <div className="flex flex-wrap ">
           {selectedProducts?.map((product) => (

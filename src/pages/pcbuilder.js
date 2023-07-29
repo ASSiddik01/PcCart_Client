@@ -4,7 +4,6 @@ import BreadCrumb from "../components/UI/BreadCrumb";
 import Link from "next/link";
 
 const PcBuilder = ({ catagories }) => {
-  // console.log(catagories);
   return (
     <div>
       <BreadCrumb title={"PC Builder"} />

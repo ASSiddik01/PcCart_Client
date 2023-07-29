@@ -1,7 +1,6 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from "@/sections/Banner";
 import Services from "@/sections/Services";
-import Catagories from "@/sections/Catagories";
 import dynamic from "next/dynamic";
 import { useDispatch } from "react-redux";
 import { setCategories } from "@/redux/features/category/categorySlice";
@@ -13,6 +12,7 @@ const Home = ({ catagories, products }) => {
   if (catagories.length > 0) {
     dispatch(setCategories(catagories));
   }
+
   if (products.length > 0) {
     dispatch(setProduct(products));
   }
