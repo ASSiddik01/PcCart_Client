@@ -1,5 +1,5 @@
 import { HiMenuAlt1 } from "react-icons/hi";
-import { FiHeart, FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/images/main_logo.png";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { signIn } from "next-auth/react";
 import { useSession, signOut } from "next-auth/react";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,26 +85,36 @@ const Header = () => {
               {/* navigator */}
               <div className="md:block hidden py-2 px-[20px]">
                 <div className="layout">
-                  <div className="menu_area my-1 flex justify-between md:justify-center items-center ">
+                  <div className="menu_area w-[60%] my-1 flex justify-between md:justify-center items-center ">
                     <ul className="mainmenu flex gap-2">
                       <li className="text-white hover:text-[#38b5fe] duration-300 ">
                         <Link href="/">Home</Link>
                       </li>
                       <li className="text-white  duration-300 main_dropdown relative flex gap-1 items-center ">
-                        <Link href="/">Categories</Link>
-                        <FaAngleDown className="duration-300" />
-                        <div className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
-                          {categories?.map((category) => (
-                            <li
-                              key={category?._id}
-                              className="hover:ml-1 duration-300 py-2 hover:text-[#38b5fe] capitalize "
-                            >
-                              <Link href={`/category/${category?._id}`}>
-                                {category?.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </div>
+                        <p onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#38b5fe] duration-300">
+                          Categories
+                        </p>
+                        <FaAngleDown
+                          className={`duration-300 ${isOpen && "rotete"}`}
+                        />
+                        {isOpen && (
+                          <div
+                            className={`bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto ${
+                              isOpen && "opacity-100 visible"
+                            } `}
+                          >
+                            {categories?.map((category) => (
+                              <p
+                                key={category?._id}
+                                className="hover:ml-1 duration-300 py-2 text-white hover:text-[#38b5fe] capitalize "
+                              >
+                                <Link href={`/category/${category?._id}`}>
+                                  {category?.title}
+                                </Link>
+                              </p>
+                            ))}
+                          </div>
+                        )}
                       </li>
                     </ul>
                   </div>
@@ -112,22 +123,21 @@ const Header = () => {
 
               <div
                 className={`action_area ${
-                  session?.user ? "md:w-[16%]" : "md:w-[8%]"
+                  session?.user ? "md:w-[13%]" : ""
                 } flex justify-between items-center md:gap-[20px] gap-[5px]`}
               >
-                {session?.user && (
-                  <Link
-                    href="/pcbuilder"
-                    className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
-                  >
-                    PC{" "}
-                    <span className="hidden md:block text-white">Builder</span>
-                  </Link>
-                )}
+                <Link
+                  href="/pcbuilder"
+                  className="bg-[#38b5fe] duration-300 flex gap-1 text-white rounded-md py-[8px] px-[12px] font-medium "
+                >
+                  PC <span className="hidden md:block text-white">Builder</span>
+                </Link>
                 <div className="myaccount relative flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe]">
                   <FiUser size="20" />
-                  <p className="text-[13px] hidden md:block">Account</p>
-                  <div className="user_button absolute  z-[999] right-[-40px] md:top-[63px] top-[50px] w-[120px] py-[5px] px-[10px] rounded-md ">
+                  <p className="text-[13px] hidden md:block">
+                    {!session?.user ? "Sign In" : "Sign Out"}
+                  </p>
+                  <div className="user_button absolute  z-[999] right-[-10px] md:top-[63px] top-[50px] w-[120px] py-[5px] px-[10px] rounded-md ">
                     <ul className="text-center">
                       {!session?.user ? (
                         <>
@@ -162,16 +172,6 @@ const Header = () => {
                       )}
                     </ul>
                   </div>
-                </div>
-                <div className="wishlist flex flex-col items-center justify-center text-white duration-300 hover:text-[#38b5fe] relative">
-                  <Link href="cart">
-                    <FiShoppingCart size="20" />
-                    <p className="text-[13px] hidden md:block">Cart</p>
-                    <div className="bg-[#38b5fe] text-white badge badge-sm absolute text-[12px] top-[-10px] right-[-10px] md:right-0">
-                      {" "}
-                      0
-                    </div>
-                  </Link>
                 </div>
               </div>
             </div>

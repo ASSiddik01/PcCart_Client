@@ -129,17 +129,17 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: all 0.3s;
 }
 
-.main_dropdown:hover > a {
+.main_dropdown:hover > a,
+.main_dropdown:hover svg {
   color: var(--color_38b5fe);
 }
 
-.main_dropdown:hover>div {
+.main_dropdown:hover > div {
   opacity: 1;
   visibility: visible;
 }
 
-.main_dropdown:hover svg {
-  color: var(--color_38b5fe);
+.rotete {
   transform: rotate(180deg);
 }
 

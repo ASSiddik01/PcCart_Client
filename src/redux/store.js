@@ -9,5 +9,6 @@ export const store = configureStore({
     product: productReducer,
     builder: builderReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
