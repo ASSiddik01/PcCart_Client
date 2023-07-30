@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { signIn } from "next-auth/react";
 import { useSession, signOut } from "next-auth/react";
-import Dropdown from "./Dropdown";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +90,10 @@ const Header = () => {
                         <Link href="/">Home</Link>
                       </li>
                       <li className="text-white  duration-300 main_dropdown relative flex gap-1 items-center ">
-                        <p onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#38b5fe] duration-300">
+                        <p
+                          onClick={() => setIsOpen(!isOpen)}
+                          className="text-white hover:text-[#38b5fe] duration-300"
+                        >
                           Categories
                         </p>
                         <FaAngleDown
@@ -113,6 +115,9 @@ const Header = () => {
                                 </Link>
                               </p>
                             ))}
+                            {categories === null && (
+                              <p className="text-white">You are refresh the site. Please go to home first</p>
+                            )}
                           </div>
                         )}
                       </li>

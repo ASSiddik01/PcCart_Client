@@ -5,6 +5,7 @@ import BreadCrumb from "../../components/UI/BreadCrumb";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setComponent } from "../../redux/features/builder/builderSlice";
+import Head from "next/head";
 
 const Component = ({ products }) => {
   const router = useRouter();
@@ -24,6 +25,9 @@ const Component = ({ products }) => {
 
   return (
     <div>
+      <Head>
+        <title>{(selectedProducts[0]?.category && selectedProducts[0]?.category.title).toUpperCase()} || PC Cart</title>
+      </Head>
       <BreadCrumb
         title={
           selectedProducts[0]?.category && selectedProducts[0]?.category.title

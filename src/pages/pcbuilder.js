@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
 import { setComponent } from "@/redux/features/builder/builderSlice";
+import Head from "next/head";
 
 const PcBuilder = ({ catagories }) => {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ const PcBuilder = ({ catagories }) => {
 
   return (
     <div>
+      <Head>
+        <title>PC Builder || PC Cart</title>
+      </Head>
       <BreadCrumb title={"PC Builder"} />
       <div className="body_wrapper pb-[20px]">
         <div className="layout">

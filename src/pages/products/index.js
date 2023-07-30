@@ -1,13 +1,16 @@
 import React from "react";
 import BreadCrumb from "../../components/UI/BreadCrumb";
 import RootLayout from "../../components/Layouts/RootLayout";
-import { useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import Link from "next/link";
+import Head from "next/head";
 
 const Products = ({ products }) => {
   return (
     <div>
+      <Head>
+        <title>All Products || PC Cart</title>
+      </Head>
       <BreadCrumb title={""} />
       <div className="container py-4 mx-auto">
         <div className="flex flex-wrap ">

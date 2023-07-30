@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setCategories } from "@/redux/features/category/categorySlice";
 import { setProduct } from "@/redux/features/product/productSlice";
 import Link from "next/link";
+import Head from "next/head";
 
 const Home = ({ catagories, products }) => {
   const dispatch = useDispatch();
@@ -32,36 +33,41 @@ const Home = ({ catagories, products }) => {
   );
 
   return (
-    <main className="layout">
-      <Banner />
-      <div className="body_wrapper md:px-[50px] p-[20px]">
-        <Services />
-        <section className="featured_collection_section bg-white p-[15px] rounded-xl section_gap">
-          <div className="section_heading flex justify-between items-center">
-            <h4 className="section_title font-bold md:text-[28px] text-[24px]">
-              Featured Products
-            </h4>
-            <Link
-              href="/products"
-              className="first_button duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
-            >
-              Show All
-            </Link>
-          </div>
-          <div className="container pt-4 mx-auto">
-            <DynamicFeaturedProducts />
-          </div>
-        </section>
-        <section className="featured_category_section bg-white p-[15px] rounded-xl section_gap">
-          <div className="section_heading">
-            <h4 className="section_title font-bold md:text-[28px] text-[24px] mb-[30px]">
-              Featured Categories
-            </h4>
-          </div>
-          <DynamicCategories />
-        </section>
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Welcome to PC Cart</title>
+      </Head>
+      <main className="layout">
+        <Banner />
+        <div className="body_wrapper md:px-[50px] p-[20px]">
+          <Services />
+          <section className="featured_collection_section bg-white p-[15px] rounded-xl section_gap">
+            <div className="section_heading flex justify-between items-center">
+              <h4 className="section_title font-bold md:text-[28px] text-[24px]">
+                Featured Products
+              </h4>
+              <Link
+                href="/products"
+                className="first_button duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
+              >
+                Show All
+              </Link>
+            </div>
+            <div className="container pt-4 mx-auto">
+              <DynamicFeaturedProducts />
+            </div>
+          </section>
+          <section className="featured_category_section bg-white p-[15px] rounded-xl section_gap">
+            <div className="section_heading">
+              <h4 className="section_title font-bold md:text-[28px] text-[24px] mb-[30px]">
+                Featured Categories
+              </h4>
+            </div>
+            <DynamicCategories />
+          </section>
+        </div>
+      </main>
+    </>
   );
 };
 

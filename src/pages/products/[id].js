@@ -1,7 +1,7 @@
 import RootLayout from "../../components/Layouts/RootLayout";
 import ReactStars from "react-rating-stars-component";
 import BreadCrumb from "../../components/UI/BreadCrumb";
-import { FaAngleDown } from "react-icons/fa";
+import Head from "next/head";
 
 const ProductDetails = ({ product }) => {
   const entries = Object.entries(product?.data?.keyFeatures);
@@ -16,6 +16,9 @@ const ProductDetails = ({ product }) => {
 
   return (
     <div>
+      <Head>
+        <title>{product?.data?.productName} || PC Cart</title>
+      </Head>
       <BreadCrumb title={product?.data?.productName} />
       <div className="body_wrapper p-[20px]">
         <div className="layout">

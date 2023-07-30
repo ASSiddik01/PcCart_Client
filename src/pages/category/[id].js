@@ -3,6 +3,7 @@ import RootLayout from "../../components/Layouts/RootLayout";
 import ReactStars from "react-rating-stars-component";
 import BreadCrumb from "../../components/UI/BreadCrumb";
 import Link from "next/link";
+import Head from "next/head";
 
 const Category = ({ products, catagory }) => {
   const router = useRouter();
@@ -13,6 +14,9 @@ const Category = ({ products, catagory }) => {
 
   return (
     <div>
+      <Head>
+        <title>{(catagory && catagory?.title).toUpperCase()} || PC Cart</title>
+      </Head>
       <BreadCrumb title={catagory && catagory?.title} />
       <div className="container py-4 mx-auto">
         <div className="flex flex-wrap ">
