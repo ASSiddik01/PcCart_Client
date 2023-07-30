@@ -44,7 +44,13 @@ const Component = ({ products }) => {
             <div key={product?._id} className="p-4 md:w-1/3 relative">
               <Link href={`/products/${product?._id}`}>
                 <div className="h-full border-2 relative border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                  <div className="product_tag duration-300 badge badge-warning absolute top-[2%] right-[2%] capitalize font-medium text-xs">
+                  <div
+                    className={`product_tag ${
+                      product?.status == "In Stock"
+                        ? "badge-warning"
+                        : "badge-error"
+                    } duration-300 badge  absolute top-[2%] right-[2%] capitalize font-medium text-xs`}
+                  >
                     {product?.status}
                   </div>
                   <div className="product_image h-[300px] flex justify-center items-center overflow-hidden rounded-xl ">
