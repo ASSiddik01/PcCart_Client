@@ -2,23 +2,13 @@ import React, { useEffect } from "react";
 import RootLayout from "@/components/Layouts/RootLayout";
 import BreadCrumb from "../components/UI/BreadCrumb";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
 import { setComponent } from "@/redux/features/builder/builderSlice";
 import Head from "next/head";
-import { useSession } from "next-auth/react";
 
 const PcBuilder = ({ catagories }) => {
-  const router = useRouter();
-  const { data: session } = useSession();
-  useEffect(() => {
-    if (!session.user) {
-      router.push("/");
-    }
-  }, [router, session]);
-
   const dispatch = useDispatch();
   const reversed = catagories?.slice().reverse();
   const components = useSelector((state) => state.builder.data);
