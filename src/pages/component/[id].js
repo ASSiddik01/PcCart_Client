@@ -3,13 +3,24 @@ import RootLayout from "../../components/Layouts/RootLayout";
 import ReactStars from "react-rating-stars-component";
 import BreadCrumb from "../../components/UI/BreadCrumb";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { setComponent } from "../../redux/features/builder/builderSlice";
 
-const Category = ({ products, catagory }) => {
+const Component = ({ products, catagory }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const selectedProducts = products?.filter(
     (product) => product.category?._id === router.query.id
   );
+  const components = useSelector((state) => state.builder.data);
+
+  const handleClick = (product) => {
+    const filterComponents = components.filter(
+      (component) => component?.category?.title !== product?.category?.title
+    );
+    dispatch(setComponent([...filterComponents, product]));
+  };
 
   return (
     <div>
@@ -59,6 +70,15 @@ const Category = ({ products, catagory }) => {
                   </div>
                 </div>
               </Link>
+              <div className="flex justify-center">
+                <Link
+                  onClick={() => handleClick(product)}
+                  href={"/pcbuilder"}
+                  className="first_button absolute bottom-10 duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
+                >
+                  Add to builder
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -67,9 +87,9 @@ const Category = ({ products, catagory }) => {
   );
 };
 
-export default Category;
+export default Component;
 
-Category.getLayout = function getLayout(page) {
+Component.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 

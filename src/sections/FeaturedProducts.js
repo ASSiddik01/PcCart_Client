@@ -39,9 +39,12 @@ const FeaturedProducts = () => {
                     <h2 className="text-md text-[#df4800] font-medium mb-1">
                       {product?.keyFeatures?.brand}
                     </h2>
-                    <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+                    <h1 className="title-font text-lg font-medium text-gray-900 mb-3 min-h-[50px]">
                       {product?.productName}
                     </h1>
+                    <p className="text-sm text-gray-900 capitalize mb-1">
+                      Category: {product?.category?.title}
+                    </p>
                     <div className="flex justify-between items-center">
                       <p className="leading-relaxed mb-3">
                         ${" "}
