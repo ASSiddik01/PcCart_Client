@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import Link from "next/link";
 
-const Products = () => {
-  const products = useSelector((state) => state.product.data);
+const Products = ({ products }) => {
   return (
     <div>
       <BreadCrumb title={""} />
@@ -64,4 +63,16 @@ export default Products;
 
 Products.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticProps = async () => {
+  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productData = await productRes.json();
+
+  return {
+    props: {
+      products: productData?.data?.data,
+    },
+    revalidate: 5,
+  };
 };

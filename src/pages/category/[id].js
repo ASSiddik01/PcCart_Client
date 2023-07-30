@@ -5,21 +5,15 @@ import ReactStars from "react-rating-stars-component";
 import BreadCrumb from "../../components/UI/BreadCrumb";
 import Link from "next/link";
 
-const Category = () => {
+const Category = ({ products, catagory }) => {
   const router = useRouter();
-  const products = useSelector((state) => state.product.data);
   const selectedProducts = products?.filter(
     (product) => product.category?._id === router.query.id
   );
 
-  const catagories = useSelector((state) => state.category.data);
-  const selectedCategory = catagories?.filter(
-    (category) => category?._id === router.query.id
-  );
-
   return (
     <div>
-      <BreadCrumb title={selectedCategory && selectedCategory[0]?.title} />
+      <BreadCrumb title={catagory && catagory?.title} />
       <div className="container py-4 mx-auto">
         <div className="flex flex-wrap ">
           {selectedProducts?.map((product) => (
@@ -74,4 +68,33 @@ export default Category;
 
 Category.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticPaths = async () => {
+  const res = await fetch("http://localhost:4000/api/v1/proCat");
+  const data = await res.json();
+  const paths = data?.data?.data.map((product) => ({
+    params: { id: product._id.toString() },
+  }));
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps = async (context) => {
+  const { params } = context;
+  const categoryRes = await fetch(
+    `http://localhost:4000/api/v1/proCat/${params.id}`
+  );
+  const categoryData = await categoryRes.json();
+
+  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productData = await productRes.json();
+
+  return {
+    props: {
+      catagory: categoryData?.data,
+      products: productData?.data?.data,
+    },
+    revalidate: 5,
+  };
 };
