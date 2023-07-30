@@ -32,8 +32,6 @@ const Home = ({ catagories, products }) => {
     }
   );
 
-  console.log(process.env.SERVER_URL);
-
   return (
     <>
       <Head>
