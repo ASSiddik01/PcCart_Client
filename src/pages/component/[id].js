@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setComponent } from "../../redux/features/builder/builderSlice";
 
-const Component = ({ products, catagory }) => {
+const Component = ({ products }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -24,7 +24,11 @@ const Component = ({ products, catagory }) => {
 
   return (
     <div>
-      <BreadCrumb title={catagory && catagory?.title} />
+      <BreadCrumb
+        title={
+          selectedProducts[0]?.category && selectedProducts[0]?.category.title
+        }
+      />
       <div className="container py-4 mx-auto">
         <div className="flex flex-wrap ">
           {selectedProducts?.map((product) => (
@@ -71,13 +75,15 @@ const Component = ({ products, catagory }) => {
                 </div>
               </Link>
               <div className="flex justify-center">
-                <Link
-                  onClick={() => handleClick(product)}
-                  href={"/pcbuilder"}
-                  className="first_button absolute bottom-10 duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
-                >
-                  Add to builder
-                </Link>
+                {product?.status === "In Stock" && (
+                  <Link
+                    onClick={() => handleClick(product)}
+                    href={"/pcbuilder"}
+                    className="first_button absolute bottom-10 duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
+                  >
+                    Add to builder
+                  </Link>
+                )}
               </div>
             </div>
           ))}
@@ -93,31 +99,13 @@ Component.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:4000/api/v1/proCat");
-  const data = await res.json();
-  const paths = data?.data?.data.map((product) => ({
-    params: { id: product._id.toString() },
-  }));
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps = async (context) => {
-  const { params } = context;
-  const categoryRes = await fetch(
-    `http://localhost:4000/api/v1/proCat/${params.id}`
-  );
-  const categoryData = await categoryRes.json();
-
+export const getServerSideProps = async () => {
   const productRes = await fetch("http://localhost:4000/api/v1/product");
   const productData = await productRes.json();
 
   return {
     props: {
-      catagory: categoryData?.data,
       products: productData?.data?.data,
     },
-    revalidate: 5,
   };
 };

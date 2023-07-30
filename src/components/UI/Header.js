@@ -93,7 +93,7 @@ const Header = () => {
                         <Link href="/">Categories</Link>
                         <FaAngleDown className="duration-300" />
                         <div className="bg-[#131921] w-52 p-4 z-[9999] rounded-md top-[50px] h-[300px] overflow-auto">
-                          {/* {categories?.map((category) => (
+                          {categories?.map((category) => (
                             <li
                               key={category?._id}
                               className="hover:ml-1 duration-300 py-2 hover:text-[#38b5fe] capitalize "
@@ -102,7 +102,7 @@ const Header = () => {
                                 {category?.title}
                               </Link>
                             </li>
-                          ))} */}
+                          ))}
                         </div>
                       </li>
                     </ul>

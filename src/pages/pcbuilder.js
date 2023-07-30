@@ -10,13 +10,11 @@ import { setComponent } from "@/redux/features/builder/builderSlice";
 
 const PcBuilder = ({ catagories }) => {
   const dispatch = useDispatch();
-  const reversed = catagories?.slice().reverse()
+  const reversed = catagories?.slice().reverse();
   const components = useSelector((state) => state.builder.data);
   const value = components.map((component) => component.category.title);
   const price = components.map((component) => component.price);
-  const total = price.reduce(    (pre, current) => pre + current,
-    0
-  );
+  const total = price.reduce((pre, current) => pre + current, 0);
 
   const essiantitalComponents = [
     "casing",
@@ -41,7 +39,9 @@ const PcBuilder = ({ catagories }) => {
         <div className="layout">
           <div className="md:mx-20">
             <div className="page_header flex md:justify-between justify-center items-center p-[20px]">
-              <div className="text-lg text-[#3b4149]  hidden md:block ">Total: $ {total}</div>
+              <div className="text-lg text-[#3b4149]  hidden md:block ">
+                Total: $ {total}
+              </div>
               <div className="">
                 <h3 className="text-2xl font-bold text-center">
                   Build Your PC
@@ -49,20 +49,22 @@ const PcBuilder = ({ catagories }) => {
                 <p className="text-center text-sm">Select Your Component</p>
               </div>
               <div className="">
-              <button
-                disabled={!essiantitalComponents}
-                onClick={() =>
-                  Swal.fire({
-                    title: "Awesome Choice",
-                    text: "Thanks for build your pc form us",
-                    icon: "success",
-                    confirmButtonText: "Done",
-                  })
-                }
-                className="first_button hidden md:block disabled:opacity-[.5] duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
-              >
-                {essiantitalComponents?"Complate to Build":"First, Select Essential Items"}
-              </button>
+                <button
+                  disabled={!essiantitalComponents}
+                  onClick={() =>
+                    Swal.fire({
+                      title: "Awesome Choice",
+                      text: "Thanks for build your pc form us",
+                      icon: "success",
+                      confirmButtonText: "Done",
+                    })
+                  }
+                  className="first_button hidden md:block disabled:opacity-[.5] duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
+                >
+                  {essiantitalComponents
+                    ? "Complate to Build"
+                    : "First, Select Essential Items"}
+                </button>
               </div>
             </div>
             <div className="component_area bg-white p-[20px] rounded-lg ">
@@ -135,7 +137,7 @@ const PcBuilder = ({ catagories }) => {
               ))}
             </div>
             <div className="flex justify-between px-4 mt-4">
-            <div className="text-lg text-[#3b4149]  ">Total: $ {total}</div>
+              <div className="text-lg text-[#3b4149]  ">Total: $ {total}</div>
               <button
                 disabled={!essiantitalComponents}
                 onClick={() =>
@@ -148,7 +150,9 @@ const PcBuilder = ({ catagories }) => {
                 }
                 className="first_button disabled:opacity-[.5] duration-300 text-white rounded-md py-[8px] px-[12px] font-medium "
               >
-                {essiantitalComponents?"Complate to Build":"First, Select Essential Items"}
+                {essiantitalComponents
+                  ? "Complate to Build"
+                  : "First, Select Essential Items"}
               </button>
             </div>
           </div>
@@ -168,13 +172,9 @@ export const getServerSideProps = async () => {
   const categoryRes = await fetch("http://localhost:4000/api/v1/proCat");
   const categoryData = await categoryRes.json();
 
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
-  const productData = await productRes.json();
-
   return {
     props: {
       catagories: categoryData?.data?.data,
-      products: productData?.data?.data,
     },
   };
 };
