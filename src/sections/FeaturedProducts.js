@@ -6,9 +6,16 @@ import ReactStars from "react-rating-stars-component";
 const FeaturedProducts = () => {
   const products = useSelector((state) => state.product.data);
 
+  function getRandomProducts(products, count) {
+    const shuffledArray = products.slice().sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, count);
+  }
+
+  const randomProducts = getRandomProducts(products, 6);
+
   return (
     <div className="flex flex-wrap ">
-      {products?.slice(0, 6)?.map((product) => (
+      {randomProducts?.map((product) => (
         <div key={product?._id} className="p-4 md:w-1/3">
           <Link href={`/products/${product?._id}`}>
             <div className="h-full border-2 relative border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
