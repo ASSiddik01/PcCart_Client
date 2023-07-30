@@ -14,7 +14,8 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: process.env.NEXTAUTH_URL,
+    // signIn: process.env.NEXTAUTH_URL,
+    signIn: "/",
   },
 };
 
