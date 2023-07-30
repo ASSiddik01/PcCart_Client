@@ -78,7 +78,7 @@ Category.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:4000/api/v1/proCat");
+  const res = await fetch(`${process.env.SERVER_URL}/proCat`);
   const data = await res.json();
   const paths = data?.data?.data.map((product) => ({
     params: { id: product._id.toString() },
@@ -90,11 +90,11 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const categoryRes = await fetch(
-    `http://localhost:4000/api/v1/proCat/${params.id}`
+    `${process.env.SERVER_URL}/proCat/${params.id}`
   );
   const categoryData = await categoryRes.json();
 
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productRes = await fetch(`${process.env.SERVER_URL}/product`);
   const productData = await productRes.json();
 
   return {

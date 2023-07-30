@@ -173,7 +173,7 @@ PcBuilder.getLayout = function getLayout(page) {
 };
 
 export const getServerSideProps = async () => {
-  const categoryRes = await fetch("http://localhost:4000/api/v1/proCat");
+  const categoryRes = await fetch(`${process.env.SERVER_URL}/proCat`);
   const categoryData = await categoryRes.json();
 
   return {

@@ -26,7 +26,12 @@ const Component = ({ products }) => {
   return (
     <div>
       <Head>
-        <title>{(selectedProducts[0]?.category && selectedProducts[0]?.category.title).toUpperCase()} || PC Cart</title>
+        <title>
+          {(
+            selectedProducts[0]?.category && selectedProducts[0]?.category.title
+          ).toUpperCase()}{" "}
+          || PC Cart
+        </title>
       </Head>
       <BreadCrumb
         title={
@@ -104,7 +109,7 @@ Component.getLayout = function getLayout(page) {
 };
 
 export const getServerSideProps = async () => {
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productRes = await fetch(`${process.env.SERVER_URL}/product`);
   const productData = await productRes.json();
 
   return {

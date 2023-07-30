@@ -116,7 +116,10 @@ const Header = () => {
                               </p>
                             ))}
                             {categories === null && (
-                              <p className="text-white">You are refresh the site. Please go to home first</p>
+                              <p className="text-white">
+                                You are refresh the site. Please go to home
+                                first
+                              </p>
                             )}
                           </div>
                         )}
@@ -188,20 +191,3 @@ const Header = () => {
 };
 
 export default Header;
-
-export const getStaticProps = async () => {
-  const categoryRes = await fetch("http://localhost:4000/api/v1/proCat");
-  const categoryData = await categoryRes.json();
-  console.log(categoryData);
-
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
-  const productData = await productRes.json();
-
-  return {
-    props: {
-      catagories: categoryData?.data?.data,
-      products: productData?.data?.data,
-    },
-    revalidate: 5,
-  };
-};

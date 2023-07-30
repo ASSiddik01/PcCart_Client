@@ -75,7 +75,7 @@ const ProductDetails = ({ product }) => {
                       </span>
                     </div>
                     <div className="flex flex-col md:flex-row gap-4 justify-between border-y py-4">
-                      <div className="">
+                      <div className="md:w-[40%]">
                         <h4 className="italic font-bold text-xl border-b">
                           Quick Overview
                         </h4>
@@ -93,7 +93,7 @@ const ProductDetails = ({ product }) => {
                           )}
                         </ul>
                       </div>
-                      <div className="">
+                      <div className="md:w-[50%]">
                         <h4 className="italic font-bold text-xl border-b">
                           Spicifications
                         </h4>
@@ -202,7 +202,7 @@ ProductDetails.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:4000/api/v1/product");
+  const res = await fetch(`${process.env.SERVER_URL}/product`);
   const data = await res.json();
   const paths = data?.data?.data.map((product) => ({
     params: { id: product._id.toString() },
@@ -212,7 +212,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { params } = context;
-  const res = await fetch(`http://localhost:4000/api/v1/product/${params.id}`);
+  const res = await fetch(`${process.env.SERVER_URL}/product/${params.id}`);
   const data = await res.json();
   return {
     props: {

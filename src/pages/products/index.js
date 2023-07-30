@@ -72,7 +72,7 @@ Products.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productRes = await fetch(`${process.env.SERVER_URL}/product`);
   const productData = await productRes.json();
 
   return {

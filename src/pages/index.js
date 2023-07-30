@@ -32,6 +32,8 @@ const Home = ({ catagories, products }) => {
     }
   );
 
+  console.log(process.env.SERVER_URL);
+
   return (
     <>
       <Head>
@@ -78,10 +80,10 @@ Home.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const categoryRes = await fetch("http://localhost:4000/api/v1/proCat");
+  const categoryRes = await fetch(`${process.env.SERVER_URL}/proCat`);
   const categoryData = await categoryRes.json();
 
-  const productRes = await fetch("http://localhost:4000/api/v1/product");
+  const productRes = await fetch(`${process.env.SERVER_URL}/product`);
   const productData = await productRes.json();
 
   return {
