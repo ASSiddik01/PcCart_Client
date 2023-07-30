@@ -14,7 +14,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "https://pccart-client.vercel.app",
+    signIn: process.env.NEXTAUTH_URL,
   },
 };
 
